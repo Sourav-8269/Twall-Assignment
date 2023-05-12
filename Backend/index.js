@@ -6,6 +6,8 @@ const cors=require("cors");
 
 app.use(cors());
 
+require('dotenv').config()
+
 app.get("/",(req,res)=>{
     res.send("Welcome to App");
 })
