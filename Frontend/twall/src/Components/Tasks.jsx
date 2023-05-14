@@ -1,25 +1,47 @@
 import React, { useEffect } from "react";
-import { Box, HStack, SimpleGrid, Text, Tooltip } from "@chakra-ui/react";
-import { useState } from "react";
-import axios from "axios";
+import { Box, HStack, SimpleGrid, Text, Tooltip, useToast } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import {store} from "../Redux/store";
-import { getData } from "../Redux/App/action";
+import { deleteData, getData } from "../Redux/App/action";
 
 const Tasks = () => {
   const data=useSelector((store)=>store.data);
   const dispatch=useDispatch();
-  // console.log(data)
+  const toast=useToast();
 
   useEffect(() => {
     dispatch(getData());
   }, []);
 
+  // Deleting Data from Backend
+
+  const handleDelete=(id)=>{
+    dispatch(deleteData(id))
+    .then(()=>{
+      dispatch(getData());
+      toast({
+        title: 'Deleted Task Successfully',
+        status: "success",
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    })
+    .catch(()=>{
+      toast({
+        title: 'Something Went Wrong',
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    })
+  }
+
   return (
     <Box mt={["20%", "15%", "8%"]}>
       {/* Previous width={["60%","80%"]} for below Box */}
-      <Box width="80%" m="auto" border="0px solid red">
+      <Box width="80%" m="auto">
         <SimpleGrid
           minChildWidth="250px"
           spacing="40px"
@@ -60,7 +82,7 @@ const Tasks = () => {
                     hasArrow
                     placement="bottom-start"
                   >
-                    <DeleteIcon cursor="pointer" boxSize={6} />
+                    <DeleteIcon cursor="pointer" boxSize={6} onClick={()=>handleDelete(el._id)} />
                   </Tooltip>
                   {!el.status && (
                     <Tooltip
