@@ -3,6 +3,7 @@ import { Box, Divider, HStack, SimpleGrid, Text, Tooltip, useToast } from "@chak
 import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, getData } from "../Redux/App/action";
+import EditTask from "./EditTask";
 
 const Tasks = () => {
   const data=useSelector((store)=>store.data);
@@ -75,9 +76,7 @@ const Tasks = () => {
                   Status : {el.status ? "Completed" : "Not Completed"}
                 </Text>
                 <HStack mt="2%" p="3%" justifyContent="space-between">
-                  <Tooltip label="Edit Task" hasArrow placement="bottom-start">
-                    <EditIcon cursor="pointer" boxSize={6} />
-                  </Tooltip>
+                  <EditTask/>
                   <Tooltip
                     label="Delete Task"
                     hasArrow
