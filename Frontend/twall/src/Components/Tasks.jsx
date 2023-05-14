@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Box, HStack, SimpleGrid, Text, Tooltip } from "@chakra-ui/react";
 import { useState } from "react";
 import axios from "axios";
-import "../Styles/Tasks.css";
 import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import {store} from "../Redux/store";
@@ -12,7 +11,7 @@ const Tasks = () => {
   const data=useSelector((store)=>store.data);
   const dispatch=useDispatch();
   // console.log(data)
-  
+
   useEffect(() => {
     dispatch(getData());
   }, []);
