@@ -21,7 +21,8 @@ function Navbar() {
       top="0"
       w="100%"
       h="60px"
-      px="50px"
+      // px="50px"
+      px={["20px","50px"]}
       display="flex"
       justifyContent="space-between"
       alignItems="center"
@@ -34,14 +35,14 @@ function Navbar() {
           display={["block", "block", "block"]}
           fontFamily="sans-serif"
           fontSize={["25px", "30px"]}
-          color={colorMode == "light" ? "#1A202C" : "#DD6B20"}
+          color={colorMode == "light" ? "#1A202C" : "#03a9f4"}
         >
           Task Planner
         </Text>
       </Link>
       <Box display="flex" width="50%" justifyContent="flex-end">
         <AddTask />
-        <Button onClick={toggleColorMode} ml="4%">
+        <Button onClick={toggleColorMode} ml="4%" bg={colorMode === "light" ? "#03a9f4" : "rgb(33,33,33)"}>
           {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
         </Button>
       </Box>

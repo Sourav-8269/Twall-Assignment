@@ -13,11 +13,11 @@ import {
   FormLabel,
   ModalHeader,
   ModalCloseButton,
-  ModalContent,
-  Select,
+  ModalContent
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
 import { addData, getData } from "../Redux/App/action";
+import { AddIcon } from "@chakra-ui/icons";
 
 const AddTask = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -65,7 +65,7 @@ const AddTask = () => {
 
   return (
     <Box>
-      <Button onClick={onOpen}>Add Task</Button>
+      <Button onClick={onOpen} leftIcon={<AddIcon/>}>Add Task</Button>
 
       <Modal
         initialFocusRef={initialRef}
