@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Box, HStack, SimpleGrid, Text, Tooltip, useToast } from "@chakra-ui/react";
+import { Box, Divider, HStack, SimpleGrid, Text, Tooltip, useToast } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteData, getData } from "../Redux/App/action";
@@ -63,13 +63,14 @@ const Tasks = () => {
                 <Text fontFamily="sans-serif" fontSize={["25px", "30px"]}>
                   {el.title}
                 </Text>
-                <Text fontFamily="sans-serif" fontSize={"20px"}>
-                  - {el.description}
+                <Divider/>
+                <Text fontFamily="sans-serif" fontSize={"20px"} mt="2%" >
+                  {el.description}
                 </Text>
                 <Text
                   fontFamily="sans-serif"
                   fontSize={"20px"}
-                  color={el.status ? "" : "#F56565"}
+                  // color={el.status ? "" : "#F56565"}
                 >
                   Status : {el.status ? "Completed" : "Not Completed"}
                 </Text>

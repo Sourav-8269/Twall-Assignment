@@ -13,6 +13,17 @@ TaskRouter.get("/",async(req,res)=>{
     }
 })
 
+TaskRouter.get("/single/:id",async (req,res)=>{
+    const id=req.params.id
+    try{
+        const task=await TaskModel.findById({_id:id});
+        res.send(task);
+    }catch(err){
+        res.send("Something Went Wrong");
+        console.log(err);
+    }
+})
+
 TaskRouter.post("/add",async(req,res)=>{
     let payload=req.body;
     try{
