@@ -18,7 +18,7 @@ TaskRouter.post("/add",async(req,res)=>{
     try{
         const task=new TaskModel(payload);
         await task.save();
-        res.send("Added Todo");
+        res.send("Added Task");
     }catch(err){
         res.send("Something Went Wrong");
         console.log(err);
@@ -42,7 +42,7 @@ TaskRouter.put("/replace/:id",async (req,res)=>{
     const payload=req.body;
     try{
         await TaskModel.findOneAndReplace({_id:id},payload);
-        res.send(`Replaced Todo with id ${id}`);
+        res.send(`Replaced Task with id ${id}`);
     }catch(err){
         res.send("Something Went Wrong");
         console.log(err);
@@ -53,7 +53,7 @@ TaskRouter.delete("/delete/:id",async (req,res)=>{
     const id=req.params.id
     try{
         await TaskModel.findByIdAndDelete({_id:id});
-        res.send(`Deleted Todo with id ${id}`);
+        res.send(`Deleted Task with id ${id}`);
     }catch(err){
         res.send("Something Went Wrong");
         console.log(err);
