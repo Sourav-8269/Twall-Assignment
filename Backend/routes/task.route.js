@@ -42,7 +42,7 @@ TaskRouter.patch("/edit/:id",async(req,res)=>{
     try{
         await TaskModel.findByIdAndUpdate({_id:id},payload,{new:true});
         res.send(`Updated Task with id ${id}`);
-    }catch{
+    }catch(err){
         res.send("Something Went Wrong");
         console.log(err);
     }

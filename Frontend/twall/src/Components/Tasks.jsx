@@ -76,7 +76,7 @@ const Tasks = () => {
                   Status : {el.status ? "Completed" : "Not Completed"}
                 </Text>
                 <HStack mt="2%" p="3%" justifyContent="space-between">
-                  <EditTask/>
+                  <EditTask el={el} />
                   <Tooltip
                     label="Delete Task"
                     hasArrow

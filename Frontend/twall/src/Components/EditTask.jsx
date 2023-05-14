@@ -18,19 +18,20 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { useToast } from "@chakra-ui/react";
-import { addData, getData } from "../Redux/App/action";
+import {  getData,updateData } from "../Redux/App/action";
 import { EditIcon } from "@chakra-ui/icons";
 
-const EditTask = () => {
+const EditTask = ({el}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const [task, settask] = useState("");
-  const [description, setdescription] = useState("");
-  const [status,setstatus]=useState(false);
+  const [task, settask] = useState(el.title||"");
+  const [description, setdescription] = useState(el.description||"");
+  const [status,setstatus]=useState(el.status||false);
+  // const [singleTask,setSingleTask]=useState({title:"",description:"",status:false});
 
   // Adding Data to backend
 
@@ -39,21 +40,19 @@ const EditTask = () => {
     if (task && description ) {
       const payload = { title: task, description, status: status=="true"?true:false };
       console.log(payload);
-      // if (payload) {
-      //   dispatch(addData(payload)).then(() => {
-      //     dispatch(getData());
-      //     toast({
-      //       title: "Updated Task Successfully",
-      //       status: "success",
-      //       duration: 2000,
-      //       isClosable: true,
-      //       position: "top",
-      //     });
-      //     onClose();
-      //     settask("");
-      //     setdescription("");
-      //   });
-      // }
+      if (payload) {
+        dispatch(updateData(el._id,payload)).then(() => {
+          dispatch(getData());
+          toast({
+            title: "Updated Task Successfully",
+            status: "success",
+            duration: 2000,
+            isClosable: true,
+            position: "top",
+          });
+          onClose();
+        });
+      }
     } else {
       toast({
         position: "top",
@@ -104,7 +103,7 @@ const EditTask = () => {
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Status</FormLabel>
-              <Select variant="filled" placeholder="Select Status" defaultValue={false} onChange={(e)=>setstatus(e.target.value)} >
+              <Select variant="filled" placeholder="Select Status" value={status} onChange={(e)=>setstatus(e.target.value)} >
                 <option value={true}>Completed</option>
                 <option value={false}>Not Completed</option>
               </Select>
