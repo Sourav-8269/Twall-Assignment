@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Box, Divider, HStack, SimpleGrid, Text, Tooltip, useToast } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteData, getData } from "../Redux/App/action";
+import { deleteData, getData, updateData } from "../Redux/App/action";
 import EditTask from "./EditTask";
 
 const Tasks = () => {
@@ -23,6 +23,31 @@ const Tasks = () => {
       toast({
         title: 'Deleted Task Successfully',
         status: "success",
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    })
+    .catch(()=>{
+      toast({
+        title: 'Something Went Wrong',
+        status: "warning",
+        duration: 2000,
+        isClosable: true,
+        position:"top"
+      })
+    })
+  }
+
+  // Updating Status to Backend via toggling 
+
+  const handleToggleStatus=(id,status)=>{
+    dispatch(updateData(id,status))
+    .then(()=>{
+      dispatch(getData());
+      toast({
+        title: status.status?"Your Task is Completed":"Your Task is Not Completed Yet",
+        status: status.status?"success":"info",
         duration: 2000,
         isClosable: true,
         position:"top"
@@ -90,7 +115,7 @@ const Tasks = () => {
                       hasArrow
                       placement="bottom-start"
                     >
-                      <CheckIcon cursor="pointer" boxSize={6} />
+                      <CheckIcon cursor="pointer" boxSize={6} onClick={()=>handleToggleStatus(el._id,{status:true})}/>
                     </Tooltip>
                   )}
                   {el.status && (
@@ -99,7 +124,7 @@ const Tasks = () => {
                       hasArrow
                       placement="bottom-start"
                     >
-                      <CloseIcon cursor="pointer" boxSize={6} />
+                      <CloseIcon cursor="pointer" boxSize={6} onClick={()=>handleToggleStatus(el._id,{status:false})}/>
                     </Tooltip>
                   )}
                 </HStack>

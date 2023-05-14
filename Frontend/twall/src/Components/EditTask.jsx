@@ -39,7 +39,6 @@ const EditTask = ({el}) => {
     e.preventDefault();
     if (task && description ) {
       const payload = { title: task, description, status: status=="true"?true:false };
-      console.log(payload);
       if (payload) {
         dispatch(updateData(el._id,payload)).then(() => {
           dispatch(getData());
