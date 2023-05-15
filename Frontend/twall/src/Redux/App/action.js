@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import * as types from "./actionTypes";
 import axios from "axios";
 
@@ -75,30 +74,11 @@ const deleteError=()=>{
     }
 }
 
-const searchRequest=()=>{
-    return {
-        type:types.SEARCH_REQUEST
-    }
-}
-
-const searchSuccess=(payload)=>{
-    return {
-        type:types.SEARCH_SUCCESS,
-        payload
-    }
-}
-
-const searchError=()=>{
-    return {
-        type:types.SEARCH_ERROR
-    }
-}
-
 // Get Data form backend
 
 const getData=()=>(dispatch)=>{
     dispatch(getRequest())
-    axios.get(`http://localhost:8080/task`)
+    axios.get(`https://hungry-moth-wrap.cyclic.app/task`)
     .then((res)=>{
         dispatch(getSuccess(res.data))
     })
@@ -109,7 +89,7 @@ const getData=()=>(dispatch)=>{
 
 const addData=(payload)=>(dispatch)=>{
     dispatch(PostRequest())
-    return axios.post(`http://localhost:8080/task/add`,payload)
+    return axios.post(`https://hungry-moth-wrap.cyclic.app/task/add`,payload)
     .then((res)=>{
         dispatch(PostSuccess())
     })
@@ -120,7 +100,7 @@ const addData=(payload)=>(dispatch)=>{
 
 const deleteData=(id)=>(dispatch)=>{
     dispatch(deleteRequest());
-    return axios.delete(`http://localhost:8080/task/delete/${id}`)
+    return axios.delete(`https://hungry-moth-wrap.cyclic.app/task/delete/${id}`)
     .then((res)=>{
        dispatch(deleteSuccess());
     })
@@ -131,7 +111,7 @@ const deleteData=(id)=>(dispatch)=>{
 
 const updateData=(id,payload)=>(dispatch)=>{
     dispatch(updateRequest());
-    return axios.patch(`http://localhost:8080/task/edit/${id}`,payload)
+    return axios.patch(`https://hungry-moth-wrap.cyclic.app/task/edit/${id}`,payload)
     .then((res)=>{
         dispatch(updateSuccess());
     })

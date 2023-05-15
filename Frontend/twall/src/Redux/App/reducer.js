@@ -57,23 +57,6 @@ const reducer = (state = initState, action) => {
         ...state,
         isLoading: false,
       };
-    case types.SEARCH_ERROR:
-      return {
-        ...state,
-        isLoading: false,
-        isError: true,
-      };
-    case types.SEARCH_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case types.SEARCH_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        data: payload
-      };
     default:
       return state;
   }
