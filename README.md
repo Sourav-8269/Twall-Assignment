@@ -47,3 +47,7 @@ To run the application locally, follow these steps:
    The application should now be running on `http://localhost:3000` (or a different port if specified).
 
 2. Open your web browser and navigate to `http://localhost:3000` to access the application.
+
+## Note
+
+No Need to provide any api as it is already present in frontend react app.
