@@ -9,6 +9,8 @@ Frontend Deployed Link: https://twall.vercel.app/
 
 Backend Deployed Link: https://hungry-moth-wrap.cyclic.app/task
 
+Explanation Video: https://drive.google.com/file/d/1bPyXSkHu_QUQ62nf4s51wVDefAOfbj17/view?usp=sharing
+
 ## Prerequisites
 
 Before you start, ensure that you have the following prerequisites installed on your machine:
