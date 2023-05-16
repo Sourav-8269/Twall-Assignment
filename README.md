@@ -5,6 +5,10 @@
 
 This README file provides instructions on how to set up and run the Task Planner App locally on your machine.
 
+Frontend Deployed Link: https://twall.vercel.app/
+
+Backend Deployed Link: https://hungry-moth-wrap.cyclic.app/task
+
 ## Prerequisites
 
 Before you start, ensure that you have the following prerequisites installed on your machine:
